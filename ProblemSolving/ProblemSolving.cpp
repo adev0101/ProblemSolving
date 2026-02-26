@@ -197,6 +197,21 @@ void PrintName(string Name)
 	cout << "Your name is " << Name << endl;
 }
 
+int ReadPositiveNumber(string Message)
+{
+	int N = 0;
+
+	do
+	{
+
+		cout << Message;
+		cin >> N;
+
+	} while (N <= 0);
+
+	return N;
+}
+
 int main()
 {
 	srand(unsigned(time(NULL)));
