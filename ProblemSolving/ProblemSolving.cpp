@@ -214,12 +214,63 @@ void GenerateKeys(int NumberOfKeys)
 	}
 }
 
+void ReadArray(int arr[], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+	{
+		cout << "Element [" << i + 1 << "]: ";
+		cin >> arr[i];
+	}
+}
+
+void PrintArray(int arr[], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+	{
+		cout << arr[i] << " ";
+	}
+}
+
+//short NumberIndexInArray(int NumberToCheck, int arr[], int arrLength)
+//{
+//	for (int i = 0; i < arrLength; i++)
+//	{
+//		if (NumberToCheck == arr[i])
+//			return i;
+//	}
+//
+//	return -1;
+//}
+
+int NumberRepetitionInArray(int NumberToCheck, int arr[], int arrLength)
+{
+
+	int counter = 0;
+
+	for (int i = 0; i < arrLength; i++)
+	{
+		if (NumberToCheck == arr[i])
+			counter++;
+	}
+
+	return counter;
+}
+
 int main()
 {
 	srand(unsigned(time(NULL)));
 
+	int arrLength = ReadPositiveNumber("Please enter array length: ");
+	int arr[100];
 
-	GenerateKeys(5);
+	ReadArray(arr, arrLength);
+
+	int NumberToCheck = ReadPositiveNumber("Please enter number to check: ");
+
+	cout << "\nOriginal Array:\n";
+	PrintArray(arr, arrLength);
+
+	cout << "\nNumber " << NumberToCheck << " is repeated (" << NumberRepetitionInArray(NumberToCheck, arr, arrLength) << ") times.\n";
 
 
 	system("pause>0");
