@@ -162,9 +162,9 @@ char GetSpecialCharacter()
 	return '\0';
 }
 
-char GetCharType(enCharType Letter)
+char GetCharType(enCharType CharType)
 {
-	switch (Letter)
+	switch (CharType)
 	{
 	case enCharType::SmallLetter:
 		return (char)RandomNumber(97, 122);
@@ -182,45 +182,44 @@ char GetCharType(enCharType Letter)
 	return '\0';
 }
 
-string ReadName(string Message)
+string GenerateWord(enCharType CharType, int WordLength)
 {
-	string sName = "";
+	string sWord = "";
 
-	cout << Message;
-	getline(cin, sName);
-
-	return sName;
-}
-
-void PrintName(string Name)
-{
-	cout << "Your name is " << Name << endl;
-}
-
-int ReadPositiveNumber(string Message)
-{
-	int N = 0;
-
-	do
+	for (int i = 0; i < WordLength; i++)
 	{
+		sWord += GetCharType(CharType);
+	}
 
-		cout << Message;
-		cin >> N;
+	return sWord;
+}
 
-	} while (N <= 0);
+string GenerateKey()
+{
+	string sKey = "";
 
-	return N;
+	sKey += GenerateWord(enCharType::CapitalLetter, 4) + "-";
+	sKey += GenerateWord(enCharType::CapitalLetter, 4) + "-";
+	sKey += GenerateWord(enCharType::CapitalLetter, 4) + "-";
+	sKey += GenerateWord(enCharType::CapitalLetter, 4);
+
+	return sKey;
+}
+
+void GenerateKeys(int NumberOfKeys)
+{
+	for (int i = 1; i <= NumberOfKeys; i++)
+	{
+		cout << "Key [" << i << "]: " << GenerateKey() << "\n";
+	}
 }
 
 int main()
 {
 	srand(unsigned(time(NULL)));
 
-	cout << GetCharType(enCharType::SmallLetter) << endl;
-	cout << GetCharType(enCharType::CapitalLetter) << endl;
-	cout << GetCharType(enCharType::SpecialCharacter) << endl;
-	cout << GetCharType(enCharType::Digit) << endl;
 
+	GenerateKeys(5);
 
 
 	system("pause>0");
