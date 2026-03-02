@@ -229,8 +229,9 @@ void PrintArray(int arr[], int arrLength)
 	{
 		cout << arr[i] << " ";
 	}
-}
 
+	cout << endl;
+}
 
 int NumberRepetitionInArray(int NumberToCheck, int arr[], int arrLength)
 {
@@ -254,6 +255,44 @@ void FillArrayWithRandomNumbers(int arr[], int arrLength)
 	}
 }
 
+int MaxNumberInArray(int arr[], int arrLength)
+{
+	int Max = 0;
+
+	for (int i = 0; i < arrLength; i++)
+	{
+		if (arr[i] > Max)
+			Max = arr[i];
+	}
+
+	return Max;
+}
+
+int MinNumberInArray(int arr[], int arrLength)
+{
+	int Min = arr[0];
+
+	for (int i = 0; i < arrLength; i++)
+	{
+		if (arr[i] < Min)
+			Min = arr[i];
+	}
+
+	return Min;
+}
+
+int SumOfArray(int arr[], int arrLength)
+{
+	int sum = 0;
+
+	for (int i = 0; i < arrLength; i++)
+	{
+		sum += arr[i];
+	}
+
+	return sum;
+}
+
 int main()
 {
 	srand(unsigned(time(NULL)));
@@ -266,7 +305,9 @@ int main()
 	cout << "\nOriginal Array:\n";
 	PrintArray(arr, arrLength);
 
-
+	cout << "\nMax number: " << MaxNumberInArray(arr, arrLength) << endl;
+	cout << "\nMin number: " << MinNumberInArray(arr, arrLength) << endl;
+	cout << "\nsum number: " << SumOfArray(arr, arrLength) << endl;
 
 	system("pause>0");
 
