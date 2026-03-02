@@ -231,16 +231,6 @@ void PrintArray(int arr[], int arrLength)
 	}
 }
 
-//short NumberIndexInArray(int NumberToCheck, int arr[], int arrLength)
-//{
-//	for (int i = 0; i < arrLength; i++)
-//	{
-//		if (NumberToCheck == arr[i])
-//			return i;
-//	}
-//
-//	return -1;
-//}
 
 int NumberRepetitionInArray(int NumberToCheck, int arr[], int arrLength)
 {
@@ -256,6 +246,14 @@ int NumberRepetitionInArray(int NumberToCheck, int arr[], int arrLength)
 	return counter;
 }
 
+void FillArrayWithRandomNumbers(int arr[], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+	{
+		arr[i] = RandomNumber(1, 100);
+	}
+}
+
 int main()
 {
 	srand(unsigned(time(NULL)));
@@ -263,14 +261,11 @@ int main()
 	int arrLength = ReadPositiveNumber("Please enter array length: ");
 	int arr[100];
 
-	ReadArray(arr, arrLength);
-
-	int NumberToCheck = ReadPositiveNumber("Please enter number to check: ");
+	FillArrayWithRandomNumbers(arr, arrLength);
 
 	cout << "\nOriginal Array:\n";
 	PrintArray(arr, arrLength);
 
-	cout << "\nNumber " << NumberToCheck << " is repeated (" << NumberRepetitionInArray(NumberToCheck, arr, arrLength) << ") times.\n";
 
 
 	system("pause>0");
