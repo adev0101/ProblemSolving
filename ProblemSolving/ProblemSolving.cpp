@@ -293,6 +293,11 @@ int SumOfArray(int arr[], int arrLength)
 	return sum;
 }
 
+float AverageOfArray(int arr[], int arrLength)
+{
+	return (float)SumOfArray(arr, arrLength) / arrLength;
+}
+
 int main()
 {
 	srand(unsigned(time(NULL)));
@@ -308,6 +313,7 @@ int main()
 	cout << "\nMax number: " << MaxNumberInArray(arr, arrLength) << endl;
 	cout << "\nMin number: " << MinNumberInArray(arr, arrLength) << endl;
 	cout << "\nsum number: " << SumOfArray(arr, arrLength) << endl;
+	cout << "\nAvg number: " << AverageOfArray(arr, arrLength) << endl;
 
 	system("pause>0");
 
