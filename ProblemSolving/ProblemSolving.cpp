@@ -230,7 +230,7 @@ void PrintArray(int arr[], int arrLength)
 		cout << arr[i] << " ";
 	}
 
-	cout << endl;
+	cout << "\n\n";
 }
 
 int NumberRepetitionInArray(int NumberToCheck, int arr[], int arrLength)
@@ -298,6 +298,14 @@ float AverageOfArray(int arr[], int arrLength)
 	return (float)SumOfArray(arr, arrLength) / arrLength;
 }
 
+void CopyArray(int arrDestination[], int arrSource[], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+	{
+		arrDestination[i] = arrSource[i];
+	}
+}
+
 int main()
 {
 	srand(unsigned(time(NULL)));
@@ -309,11 +317,13 @@ int main()
 
 	cout << "\nOriginal Array:\n";
 	PrintArray(arr, arrLength);
+	
+	int arrNew[100];
 
-	cout << "\nMax number: " << MaxNumberInArray(arr, arrLength) << endl;
-	cout << "\nMin number: " << MinNumberInArray(arr, arrLength) << endl;
-	cout << "\nsum number: " << SumOfArray(arr, arrLength) << endl;
-	cout << "\nAvg number: " << AverageOfArray(arr, arrLength) << endl;
+	CopyArray(arrNew, arr, arrLength);
+
+	cout << "\nArray Copy:\n";
+	PrintArray(arrNew, arrLength);
 
 	system("pause>0");
 
