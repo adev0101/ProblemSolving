@@ -306,24 +306,67 @@ void CopyArray(int arrDestination[], int arrSource[], int arrLength)
 	}
 }
 
+void Staircase(int n) {
+
+	if (n < 0 || n > 100)
+	{
+		return;
+	}
+
+
+	for (int i = n; i >= 1; i--) // rows
+	{
+		// i = 4
+		for (int j = 1; j <= n; j++) // columns
+		{
+			// j = 1
+			if (j < i)
+				cout << " ";
+			else
+				cout << "#";
+
+		}
+
+		cout << "\n";
+	}
+
+
+}
+
+void StaircaseOpposite(int n) {
+
+	if (n < 0 || n > 100)
+	{
+		return;
+	}
+
+
+	for (int i = n; i >= 1; i--) // rows
+	{
+		// i = 4
+		for (int j = 1; j <= n; j++) // columns
+		{
+			// j = 1
+			if (j <= i)
+				cout << "#";
+			else
+				cout << " ";
+
+		}
+
+		cout << "\n";
+	}
+
+
+}
+
 int main()
 {
 	srand(unsigned(time(NULL)));
 
-	int arrLength = ReadPositiveNumber("Please enter array length: ");
-	int arr[100];
-
-	FillArrayWithRandomNumbers(arr, arrLength);
-
-	cout << "\nOriginal Array:\n";
-	PrintArray(arr, arrLength);
-	
-	int arrNew[100];
-
-	CopyArray(arrNew, arr, arrLength);
-
-	cout << "\nArray Copy:\n";
-	PrintArray(arrNew, arrLength);
+	Staircase(4);
+	cout << endl;
+	StaircaseOpposite(4);
 
 	system("pause>0");
 
