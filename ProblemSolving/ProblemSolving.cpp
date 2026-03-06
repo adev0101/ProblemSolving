@@ -360,13 +360,58 @@ void StaircaseOpposite(int n) {
 
 }
 
+enum enPrimNotPrime { Prime = 1, NotPrime = 2 };
+
+
+enPrimNotPrime CheckPrime(int Number)
+{
+
+	int M = round(Number / 2);
+
+	// Loop from 2 to M to test for divisibility.
+	for (int Counter = 2; Counter <= M; Counter++)
+	{
+		// If Number is divisible by any Counter, then it is not a prime.
+		if (Number % Counter == 0)
+			return enPrimNotPrime::NotPrime;  // Return NotPrime immediately.
+	}
+
+	// If no divisors were found, return Prime.
+	return enPrimNotPrime::Prime;
+}
+
+void CopyPrimeArray(int arrDestination[], int arrSource[], int arrLength, int &arr2Length)
+{
+	int index = 0; // the core idea of handling this function
+
+	for (int i = 0; i < arrLength; i++)
+	{
+		if (CheckPrime(arrSource[i]) == enPrimNotPrime::Prime)
+		{
+			arrDestination[index] = arrSource[i];
+			index++;
+		}
+	}
+
+	arr2Length = index;
+}
+
+
 int main()
 {
 	srand(unsigned(time(NULL)));
 
-	Staircase(4);
-	cout << endl;
-	StaircaseOpposite(4);
+
+	int arr[100], arrLength = ReadPositiveNumber("Please enter array length: ");
+
+	FillArrayWithRandomNumbers(arr, arrLength);
+	cout << "\nOriginal Array:\n";
+	PrintArray(arr, arrLength);
+
+	int arr2[100], arrLength2 = 0;
+	CopyPrimeArray(arr2, arr, arrLength, arrLength2);
+	cout << "\nCopy Array:\n";
+	PrintArray(arr2, arrLength2);
 
 	system("pause>0");
 
