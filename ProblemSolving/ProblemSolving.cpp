@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -394,6 +395,27 @@ void CopyPrimeArray(int arrDestination[], int arrSource[], int arrLength, int &a
 	}
 
 	arr2Length = index;
+}
+
+void miniMaxSum(vector<int> arr) {
+	long long sum = 0;
+	int min = arr[0], max = 0;
+
+	for (int i = 0; i < arr.size(); i++)
+	{
+		sum += arr[i];
+
+		if (arr[i] < min)
+		{
+			min = arr[i];
+		}
+
+		if (arr[i] > max)
+		{
+			max = arr[i];
+		}
+	}
+	cout << sum - max << " " << sum - min << endl;
 }
 
 
