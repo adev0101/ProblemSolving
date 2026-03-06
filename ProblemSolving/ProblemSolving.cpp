@@ -415,7 +415,11 @@ void miniMaxSum(vector<int> arr) {
 			max = arr[i];
 		}
 	}
-	cout << sum - max << " " << sum - min << endl;
+
+	long long sumMin = sum - max;
+	long long sumMax = sum - min;
+
+	cout << sumMin << " " << sumMax << endl;
 }
 
 
