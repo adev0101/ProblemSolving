@@ -398,12 +398,12 @@ void CopyPrimeArray(int arrDestination[], int arrSource[], int arrLength, int &a
 }
 
 void miniMaxSum(vector<int> arr) {
-	long long sum = 0;
+	long long TotalSum = 0;
 	int min = arr[0], max = 0;
 
 	for (int i = 0; i < arr.size(); i++)
 	{
-		sum += arr[i];
+		TotalSum += arr[i];
 
 		if (arr[i] < min)
 		{
@@ -416,28 +416,41 @@ void miniMaxSum(vector<int> arr) {
 		}
 	}
 
-	long long sumMin = sum - max;
-	long long sumMax = sum - min;
+	long long sumMin = TotalSum - max;
+	long long sumMax = TotalSum - min;
 
 	cout << sumMin << " " << sumMax << endl;
 }
 
+void SumOf2Arrays(int arrSum[], int arr1[], int arr2[], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+	{
+		arrSum[i] = arr1[i] + arr2[i];
+	}
+}
 
 int main()
 {
 	srand(unsigned(time(NULL)));
 
 
-	int arr[100], arrLength = ReadPositiveNumber("Please enter array length: ");
+	int arr[100],arr2[100], arrLength = ReadPositiveNumber("Please enter arrays length: ");
 
 	FillArrayWithRandomNumbers(arr, arrLength);
-	cout << "\nOriginal Array:\n";
+	cout << "\nArray1:\n";
 	PrintArray(arr, arrLength);
 
-	int arr2[100], arrLength2 = 0;
-	CopyPrimeArray(arr2, arr, arrLength, arrLength2);
-	cout << "\nCopy Array:\n";
-	PrintArray(arr2, arrLength2);
+	FillArrayWithRandomNumbers(arr2, arrLength);
+	cout << "\nArray2:\n";
+	PrintArray(arr2, arrLength);
+
+	
+	int arrSum[100];
+
+	SumOf2Arrays(arrSum, arr, arr2, arrLength);
+	cout << "\nArray Sum:\n";
+	PrintArray(arrSum, arrLength);
 
 	system("pause>0");
 
