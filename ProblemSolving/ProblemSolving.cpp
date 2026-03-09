@@ -250,8 +250,10 @@ int NumberRepetitionInArray(int NumberToCheck, int arr[], int arrLength)
 
 void FillArrayWithRandomNumbers(int arr[], int arrLength)
 {
+	// *arr = arr -> &arr[0]
 	for (int i = 0; i < arrLength; i++)
 	{
+
 		arr[i] = RandomNumber(1, 100);
 	}
 }
@@ -430,27 +432,63 @@ void SumOf2Arrays(int arrSum[], int arr1[], int arr2[], int arrLength)
 	}
 }
 
+int birthdayCakeCandles(vector<int> candles) {
+	int counter = 0;
+	int tallestHeight = candles[0];
+
+	for (int i = 0; i < candles.size(); i++)
+	{
+		if (candles[i] > tallestHeight)
+		{
+			tallestHeight = candles[i];
+			counter = 1;
+		}
+
+		else if (candles[i] == tallestHeight)
+		{
+			counter++;
+		}
+	}
+
+
+
+	return counter;
+}
+
 int main()
 {
 	srand(unsigned(time(NULL)));
 
+//
+//	int arr[100],arr2[100], arrLength = ReadPositiveNumber("Please enter arrays length: ");
+//
+//	FillArrayWithRandomNumbers(arr, arrLength);
+//	//cout << "\nArray1:\n";
+//	//PrintArray(arr, arrLength);
+//
+//	FillArrayWithRandomNumbers(arr2, arrLength);
+//	//cout << "\nArray2:\n";
+//	//PrintArray(arr2, arrLength);
+//
+//	
+//	/*int arrSum[100];
+//
+//	SumOf2Arrays(arrSum, arr, arr2, arrLength);
+//	cout << "\nArray Sum:\n";
+//	PrintArray(arrSum, arrLength);
+//*/
+//	cout << arr << endl;
+//	cout << &arr[0] << endl;
+//	cout << &arr[1] << endl;
 
-	int arr[100],arr2[100], arrLength = ReadPositiveNumber("Please enter arrays length: ");
+	vector<int> vCandles;
 
-	FillArrayWithRandomNumbers(arr, arrLength);
-	cout << "\nArray1:\n";
-	PrintArray(arr, arrLength);
+	vCandles.push_back(3);
+	vCandles.push_back(2);
+	vCandles.push_back(1);
+	vCandles.push_back(3);
 
-	FillArrayWithRandomNumbers(arr2, arrLength);
-	cout << "\nArray2:\n";
-	PrintArray(arr2, arrLength);
-
-	
-	int arrSum[100];
-
-	SumOf2Arrays(arrSum, arr, arr2, arrLength);
-	cout << "\nArray Sum:\n";
-	PrintArray(arrSum, arrLength);
+	cout << birthdayCakeCandles(vCandles) << endl;
 
 	system("pause>0");
 
