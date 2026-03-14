@@ -455,41 +455,99 @@ int birthdayCakeCandles(vector<int> candles) {
 	return counter;
 }
 
+void FillArrayFrom1toN(int arr[], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+	{
+		arr[i] = i + 1;
+	}
+}
+
+void ShuffleArray(int arr[], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+	{
+		int j = RandomNumber(i, arrLength - 1); // index of the random choice of range starting after the current element
+		Swap(arr[i], arr[j]); // swap it with the current element
+	}
+}
+
+string timeConversion(string s) {
+
+	string hr = s.substr(0, 2);
+	string min = s.substr(3, 2);
+	string sec = s.substr(6, 2);
+	string am_pm = s.substr(8, 2);
+
+	int hr_time = stoi(hr);
+
+	if (am_pm == "AM" && hr_time == 12)
+	{
+		hr_time = 0;
+	}
+
+	if (am_pm == "PM" && hr_time != 12)
+	{
+		hr_time = hr_time + 12;
+	}
+
+	hr = hr_time < 10 ? "0" + to_string(hr_time) : to_string(hr_time);
+
+	s = hr + ":" + min + ":" + sec;
+
+	return s;
+
+}
+
+vector<int> gradingStudents(vector<int> grades) {
+
+	
+	for (int i = 0; i < grades.size(); i++)
+	{
+		if (grades[i] < 38)
+			continue;
+
+		int nearestToMultipleOfFive = 5 * ((grades[i] / 5) + 1);
+
+		if (nearestToMultipleOfFive - grades[i] < 3)
+		{
+			grades[i] = nearestToMultipleOfFive;
+		}
+
+	}
+
+	return grades;
+
+}
+
+void CopyArrayInReversedOrder(int arrDestination[], int arrSource[], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+	{
+		arrDestination[i] = arrSource[arrLength - 1 - i];
+	}
+}
+
 int main()
 {
 	srand(unsigned(time(NULL)));
 
-//
-//	int arr[100],arr2[100], arrLength = ReadPositiveNumber("Please enter arrays length: ");
-//
-//	FillArrayWithRandomNumbers(arr, arrLength);
-//	//cout << "\nArray1:\n";
-//	//PrintArray(arr, arrLength);
-//
-//	FillArrayWithRandomNumbers(arr2, arrLength);
-//	//cout << "\nArray2:\n";
-//	//PrintArray(arr2, arrLength);
-//
-//	
-//	/*int arrSum[100];
-//
-//	SumOf2Arrays(arrSum, arr, arr2, arrLength);
-//	cout << "\nArray Sum:\n";
-//	PrintArray(arrSum, arrLength);
-//*/
-//	cout << arr << endl;
-//	cout << &arr[0] << endl;
-//	cout << &arr[1] << endl;
 
-	vector<int> vCandles;
 
-	vCandles.push_back(3);
-	vCandles.push_back(2);
-	vCandles.push_back(1);
-	vCandles.push_back(3);
+	int arr[100], arrLength;
 
-	cout << birthdayCakeCandles(vCandles) << endl;
+	arrLength = ReadPositiveNumber("Please enter array length: ");
+	FillArrayWithRandomNumbers(arr, arrLength);
 
+	cout << "\nOriginal Array:\n";
+	PrintArray(arr, arrLength);
+
+	int arrReversed[100];
+	CopyArrayInReversedOrder(arrReversed, arr, arrLength);
+
+	cout << "\nArray In reverse:\n";
+	PrintArray(arrReversed, arrLength);
+	
 	system("pause>0");
 
 	return 0;
