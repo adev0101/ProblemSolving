@@ -528,26 +528,68 @@ void CopyArrayInReversedOrder(int arrDestination[], int arrSource[], int arrLeng
 	}
 }
 
+void FillArrayWithKeys(string arr[], int NumberOfKeys)
+{
+	for (int i = 0; i < NumberOfKeys; i++)
+	{
+		arr[i] = GenerateKey();
+	}
+}
+
+void PrintStringArray(string arr[], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+	{
+		cout << "Array[" << i << "]: " << arr[i] << endl;
+	}
+}
+
+int NumberIndexInArray(int Number, int arr[], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+	{
+		if (arr[i] == Number)
+			return i;
+	}
+
+	return -1;
+}
+
+void GetNumberSearchResultInArray(int Number, int arr[], int arrLength)
+{
+	int NumberIndex = NumberIndexInArray(Number, arr, arrLength);
+
+	if (NumberIndex != -1)
+	{
+		cout << "Number Position: " << NumberIndex << endl;
+		cout << "Number Order: " << ++NumberIndex << endl;
+	}
+
+	else
+	{
+		cout << "Number is not found." << endl;
+	}
+}
+
 int main()
 {
 	srand(unsigned(time(NULL)));
 
-
-
-	int arr[100], arrLength;
+	int arr[100], arrLength = 0, Number = 0;
 
 	arrLength = ReadPositiveNumber("Please enter array length: ");
 	FillArrayWithRandomNumbers(arr, arrLength);
 
-	cout << "\nOriginal Array:\n";
+	cout << "\nArray elements:\n";
 	PrintArray(arr, arrLength);
 
-	int arrReversed[100];
-	CopyArrayInReversedOrder(arrReversed, arr, arrLength);
+	Number = ReadPositiveNumber("Please enter number you're looking for: ");
 
-	cout << "\nArray In reverse:\n";
-	PrintArray(arrReversed, arrLength);
-	
+	cout << "\nNumber you're looking for: " << Number << endl;
+
+	GetNumberSearchResultInArray(Number, arr, arrLength);
+
+
 	system("pause>0");
 
 	return 0;
