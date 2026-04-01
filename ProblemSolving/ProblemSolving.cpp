@@ -544,7 +544,7 @@ void PrintStringArray(string arr[], int arrLength)
 	}
 }
 
-int NumberIndexInArray(int Number, int arr[], int arrLength)
+int NumberPositionInArray(int Number, int arr[], int arrLength)
 {
 	for (int i = 0; i < arrLength; i++)
 	{
@@ -553,22 +553,6 @@ int NumberIndexInArray(int Number, int arr[], int arrLength)
 	}
 
 	return -1;
-}
-
-void GetNumberSearchResultInArray(int Number, int arr[], int arrLength)
-{
-	int NumberIndex = NumberIndexInArray(Number, arr, arrLength);
-
-	if (NumberIndex != -1)
-	{
-		cout << "Number Position: " << NumberIndex << endl;
-		cout << "Number Order: " << ++NumberIndex << endl;
-	}
-
-	else
-	{
-		cout << "Number is not found." << endl;
-	}
 }
 
 int main()
@@ -587,8 +571,18 @@ int main()
 
 	cout << "\nNumber you're looking for: " << Number << endl;
 
-	GetNumberSearchResultInArray(Number, arr, arrLength);
+	int NumberPosition = NumberPositionInArray(Number, arr, arrLength);
 
+	if (NumberPosition == -1)
+		cout << "Number not found." << endl;
+
+	else
+	{
+		cout << "Number position is " << NumberPosition;
+		cout << "\nNumber order is " << ++NumberPosition << endl;
+	}
+
+	
 
 	system("pause>0");
 
