@@ -365,21 +365,22 @@ void StaircaseOpposite(int n) {
 
 enum enPrimNotPrime { Prime = 1, NotPrime = 2 };
 
-
 enPrimNotPrime CheckPrime(int Number)
 {
 
+	// Calculate M as an approximate half of Number.
+	 // Using round(Number / 2) is not the most efficient method (usually sqrt(Number) is used),
+	 // but it works for small values.
 	int M = round(Number / 2);
 
-	// Loop from 2 to M to test for divisibility.
+	// Loop from 2 to M (inclusive) to test if any number divides Number evenly.
 	for (int Counter = 2; Counter <= M; Counter++)
 	{
-		// If Number is divisible by any Counter, then it is not a prime.
 		if (Number % Counter == 0)
-			return enPrimNotPrime::NotPrime;  // Return NotPrime immediately.
+			return enPrimNotPrime::NotPrime; // If divisible, Number is not prime.
 	}
 
-	// If no divisors were found, return Prime.
+	// If no divisors are found, return Prime.
 	return enPrimNotPrime::Prime;
 }
 
@@ -555,32 +556,90 @@ int NumberPositionInArray(int Number, int arr[], int arrLength)
 	return -1;
 }
 
+void AddArrayElement(int Number, int arr[], int &arrLength)
+{
+
+	arrLength++; // since it's a new element, we increase the length by one.
+	arr[arrLength - 1] = Number;
+
+}
+
+void AddElementsToArray(int arr[], int &arrLength)
+{
+	char Answer = 'y';
+	int NumberToAdd = 0;
+
+	do
+	{
+		NumberToAdd = ReadPositiveNumber("\nPlease enter a number:");
+
+		AddArrayElement(NumberToAdd, arr, arrLength);
+
+		cout << "\nDo you want to add more number? [y/n]? ";
+		cin >> Answer;
+
+
+	} while (Answer == 'y' || Answer == 'Y');
+}
+
+void CopyArrayUsingAddArrayElement(int arrDestination[], int arrSource[], int arrSourceLength, int &arrDestinationLength)
+{
+	// arrSource = 10
+	for (int i = 0; i < arrSourceLength; i++)
+	{
+		AddArrayElement(arrSource[i], arrDestination, arrDestinationLength);
+	}
+}
+
+enum enEvenOdd { Even = 1, Odd = 2 };
+
+enEvenOdd CheckNumber(int Number)
+{
+	if (Number % 2 == 0)
+		return enEvenOdd::Even;
+	else
+		return enEvenOdd::Odd;
+}
+
+void CopyArrayUsingAddArrayElementOddNumbers(int arrDestination[], int arrSource[], int arrSourceLength, int& arrDestinationLength)
+{
+	// arrSource = 10
+	for (int i = 0; i < arrSourceLength; i++)
+	{
+		if (arrSource[i] % 2 != 0)
+		{
+			AddArrayElement(arrSource[i], arrDestination, arrDestinationLength);
+		}
+	}
+}
+
+void CopyArrayUsingAddArrayElementPrimeNumbers(int arrDestination[], int arrSource[], int arrSourceLength, int& arrDestinationLength)
+{
+	for (int i = 0; i < arrSourceLength; i++)
+	{
+		if (CheckPrime(arrSource[i]) == enPrimNotPrime::Prime)
+		{
+			AddArrayElement(arrSource[i], arrDestination, arrDestinationLength);
+		}
+	}
+}
+
 int main()
 {
 	srand(unsigned(time(NULL)));
 
-	int arr[100], arrLength = 0, Number = 0;
+	int arr[100], arrLength = 0, arr2[100], arr2Length = 0;
 
-	arrLength = ReadPositiveNumber("Please enter array length: ");
+	arrLength = ReadPositiveNumber("Please enter array length:");
 	FillArrayWithRandomNumbers(arr, arrLength);
 
-	cout << "\nArray elements:\n";
+	cout << "\nOriginal Array:\n";
 	PrintArray(arr, arrLength);
 
-	Number = ReadPositiveNumber("Please enter number you're looking for: ");
+	CopyArrayUsingAddArrayElementPrimeNumbers(arr2, arr, arrLength, arr2Length);
 
-	cout << "\nNumber you're looking for: " << Number << endl;
-
-	int NumberPosition = NumberPositionInArray(Number, arr, arrLength);
-
-	if (NumberPosition == -1)
-		cout << "Number not found." << endl;
-
-	else
-	{
-		cout << "Number position is " << NumberPosition;
-		cout << "\nNumber order is " << ++NumberPosition << endl;
-	}
+	cout << "\nCopy Array:\n";
+	PrintArray(arr2, arr2Length);
 
 	
 
